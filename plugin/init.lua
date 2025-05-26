@@ -15,12 +15,11 @@ local function setup_tera_injection()
 	local bufname = vim.api.nvim_buf_get_name(0)
 	local filename = vim.fn.fnamemodify(bufname, ":t")
 
-	local language = "html"
 	local pattern = "(.+)%.tera$"
 	local base_name = filename:match(pattern)
 
 	local ext = base_name:match("%.(%w+)$")
-	language = ext
+	local language = ext or "html"
 
 	local injection_content = string.format(
 		[[; extends
